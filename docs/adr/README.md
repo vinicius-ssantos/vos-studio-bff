@@ -16,3 +16,6 @@ This directory documents architectural decisions for `vos-studio-bff`.
 - [ADR-0010 — Enforce client data isolation in BFF responses](0010-enforce-client-data-isolation-in-bff-responses.md)
 - [ADR-0011 — Define observability and operational health model](0011-define-observability-and-operational-health-model.md)
 - [ADR-0012 — Reuse the GitHub Unified MCP BFF as implementation baseline](0012-reuse-github-unified-mcp-bff-as-implementation-baseline.md)
+- [ADR-0013 — Define frontend error envelope and API contract versioning](0013-define-frontend-error-envelope-and-api-contract-versioning.md)
+- [ADR-0014 — Require tests and CI before implementation merges](0014-require-tests-and-ci-before-implementation-merges.md)
+- [ADR-0015 — Validate runtime configuration and secret handling](0015-validate-runtime-configuration-and-secret-handling.md)
