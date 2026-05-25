@@ -31,11 +31,13 @@ def is_production(settings: Settings) -> bool:
 
 
 def _is_http_url(value: str) -> bool:
-    return urlparse(value).scheme in {"http", "https"}
+    parsed = urlparse(value)
+    return parsed.scheme in {"http", "https"} and bool(parsed.netloc)
 
 
 def _is_https_url(value: str) -> bool:
-    return urlparse(value).scheme == "https"
+    parsed = urlparse(value)
+    return parsed.scheme == "https" and bool(parsed.netloc)
 
 
 def parsed_allowed_origins(settings: Settings) -> list[str]:
@@ -77,7 +79,7 @@ def validate_settings(settings: Settings) -> None:
         errors.append("ALLOW_RAW_MCP_PASSTHROUGH must be false in production")
     if not settings.block_unknown_tools:
         errors.append("BLOCK_UNKNOWN_TOOLS must be true in production")
-    if settings.audit_backend == "memory":
+    if settings.audit_backend.lower() == "memory":
         errors.append("AUDIT_BACKEND must be persistent in production")
 
     if errors:
