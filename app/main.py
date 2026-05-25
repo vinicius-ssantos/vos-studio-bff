@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import __version__
@@ -22,7 +22,8 @@ def create_app() -> FastAPI:
         return {"ok": True, "service": "vos-studio-bff", "version": __version__}
 
     @app.get("/api/capabilities")
-    async def capabilities(settings: Settings = Depends(get_settings)) -> dict:
+    async def capabilities() -> dict:
+        settings: Settings = get_settings()
         return {
             "service": "vos-studio-bff",
             "version": __version__,
