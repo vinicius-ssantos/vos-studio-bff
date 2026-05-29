@@ -26,3 +26,24 @@ Browser / VOS Studio Console
 ## Architecture decisions
 
 Architecture Decision Records live in [`docs/adr`](docs/adr/README.md).
+
+## Container runtime
+
+The service image runs the FastAPI app with Uvicorn on port `8000`:
+
+```bash
+docker build -t vos-studio-bff:test .
+docker run --rm -p 8030:8000 \
+  -e BFF_ENV=development \
+  -e FRONTEND_URL=http://localhost:5174 \
+  -e ALLOWED_ORIGINS=http://localhost:5174 \
+  -e MCP_URL=http://vos-studio-mcp:8000 \
+  -e COOKIE_SECURE=false \
+  vos-studio-bff:test
+```
+
+Health check:
+
+```bash
+curl -fsS http://localhost:8030/healthz
+```
